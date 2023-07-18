@@ -1,5 +1,3 @@
-# suite2mimic
-
 # Installation
 
 ## Requirements
