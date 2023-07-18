@@ -8,7 +8,7 @@
 - conda
 -------
 ### Option 1
-Follow [installation](https://robomimic.github.io/docs/introduction/installation.html) of robomimic
+Follow [installation](https://robomimic.github.io/docs/introduction/installation.html) of robomimic.
 -------
 ### Option 2 (tested and adapted from Option 1) 
 
