@@ -16,7 +16,7 @@ Follow [installation](https://robomimic.github.io/docs/introduction/installation
 conda create -n robomimic python=3.8.0
 conda activate robomimic
 ```
----
+
 ### Install [Pytorch](https://pytorch.org/get-started/previous-versions/) that match the cuda version
 Check CUDA Version:
 ```
@@ -26,7 +26,7 @@ For example, for CUDA Version 11.4:
 ```
 conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 cudatoolkit=11.3 -c pytorch
 ```
----
+
 ### Install robomimic from source
 ```
 cd ~/suite2mimic
@@ -34,7 +34,7 @@ git clone https://github.com/ARISE-Initiative/robomimic.git
 cd robomimic
 pip install -e .
 ```
----
+
 ### Install robosuite from source (simulator)
 Note: git checkout is for reproducing experiments
 ```
