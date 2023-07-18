@@ -54,6 +54,8 @@ cd ~/suite2mimic/robomimic
 python examples/train_bc_rnn.py --debug
 ```
 EGL exception is normal and is ignored
+
+
 -------
 Run a much more thorough test of several algorithms and scripts:
 ```
