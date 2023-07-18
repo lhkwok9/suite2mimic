@@ -61,21 +61,20 @@ bash test.sh
 ```
 
 # robosuite datasets
----
-The following command are for [Demo data](data_collection/PickPlaceCan_Jul18_original)
+The following command are for [Demo data](data_collection/PickPlaceCan_Jul18_original):
 1. get robosuite hdf5 format (edit folder_names and robosuite env config in the program)
 ```
 cd ~/suite2mimic/scripts
 python gather_demonstrations_as_hdf5.py
 ```
 
-2. convert robsuite data to robomimic format ([robomimic instruction](https://robomimic.github.io/docs/datasets/robosuite.html#extracting-observations-from-mujoco-states))
+2. convert robsuite data to robomimic format ([robomimic instruction](https://robomimic.github.io/docs/datasets/robosuite.html#extracting-observations-from-mujoco-states)):
 ```
 cd ~/suite2mimic/robomimic/robomimic/scripts
 python conversion/convert_robosuite.py --dataset ../../../data_collection/PickPlaceCan_Jul18_original_hdf5/demo.hdf5
 ```
 
-3. extract observation from mujoco states
+3. extract observation from mujoco states:
 ```
 # For low dimensional observations only, with done on task success
 python dataset_states_to_obs.py --dataset ../../../data_collection/PickPlaceCan_Jul18_original_hdf5/demo.hdf5 --output_name low_dim.hdf5 --done_mode 2
@@ -85,6 +84,7 @@ python dataset_states_to_obs.py --dataset ../../../data_collection/PickPlaceCan_
 
 ```
 
+---
 Possible error 1:
 ```
 ValueError: No "geom" with name ... exists.
@@ -97,7 +97,37 @@ run the following line and Ctrl-C after a few seconds
 ```
 python /home/jk/suite2mimic/robosuite/robosuite/scripts/collect_human_demonstrations.py --environment PickPlaceCan
 ```
-then [check the difference](https://www.diffchecker.com/text-compare/) and find the missing geom between the [model.xml](data_collection/PickPlaceCan_Jul18_original/ep_1689660868_9146771/model.xml) from the raw data and the model.xml generated in /tmp,
+then [check the difference](https://www.diffchecker.com/text-compare/) and find the missing geom between the [model.xml](data_collection/PickPlaceCan_Jul18_original/ep_1689660868_9146771/model.xml) from the raw data and the model.xml generated in /tmp
 
-then add the geom line to the eldest file in the demo, e.g. add```<geom name="robot0_link7_collision" type="mesh" rgba="0 0.5 0 1" mesh="robot0_link7"/>``` after line 281 in [ep_1689660868_9146771/model.xml](data_collection/PickPlaceCan_Jul18_original/ep_1689660868_9146771/model.xml))
+then add the geom line to the eldest file in the demo (e.g. add```<geom name="robot0_link7_collision" type="mesh" rgba="0 0.5 0 1" mesh="robot0_link7"/>``` after line 281 in [ep_1689660868_9146771/model.xml](data_collection/PickPlaceCan_Jul18_original/ep_1689660868_9146771/model.xml))
 
+then copy the eldest xml to other demo data in the folder (edit the data_folder in the program):
+```
+cd ~/suite2mimic/scripts
+python add7collision.py
+```
+
+then delete all the hdf5 file generated b4 and start from step 1 again
+
+---
+
+4. config the training
+copy and edit the [example training config](config/robomimic/can/mh/low_dim/bc_rnn.json) from robomimic paper
+change experiment.name (e.g. ```Can_Jul18_MH_100_no_quat```)
+change train.data (e.g. ```~/suite2mimic/data_collection/PickPlaceCan_Jul18_original_hdf5/low_dim.hdf5```)
+change train.output_dir (e.g. ```../../bc_rnn_trained_models```)
+change observation.modalities.obs.low_dim (e.g. remove ```"robot0_eef_quat"```)
+
+5. start the training
+```
+cd ~/suite2mimic/robomimic/robomimic/scripts
+python train.py --config ~/suite2mimic/config/custom/bc_rnn.json
+```
+logs, models and testing videos are in the output_dir
+
+6. viewing result
+```
+tensorboard --logdir ~/suite2mimic/bc_rnn_trained_models/Can_Jul18_MH_100_no_quat/20230719015716/logs --bind_all
+```
+and open the link generated (close the link before Ctrl-C)
+(testing success rate is included in the model name)
