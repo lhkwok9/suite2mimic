@@ -52,10 +52,8 @@ Run a quick debugging 2 epoch training, record testing videos and save the model
 cd ~/suite2mimic/robomimic
 python examples/train_bc_rnn.py --debug
 ```
-EGL exception is normal and is ignored
+EGL exception is normal and is ignored.
 
-
----
 Run a much more thorough test of several algorithms and scripts:
 ```
 cd ~/suite2mimic/robomimic/tests
