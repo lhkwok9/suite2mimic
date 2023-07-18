@@ -63,6 +63,7 @@ bash test.sh
 ```
 
 # robosuite datasets 
-# (Demo with data_collection/PickPlaceCan_Jul18_original)
+(Demo with data_collection/PickPlaceCan_Jul18_original)
+---
 
 
