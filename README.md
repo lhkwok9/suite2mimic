@@ -98,5 +98,6 @@ run the following line and Ctrl-C after a few seconds
 python /home/jk/suite2mimic/robosuite/robosuite/scripts/collect_human_demonstrations.py --environment PickPlaceCan
 ```
 then [check the difference](https://www.diffchecker.com/text-compare/) and find the missing geom between the [model.xml](data_collection/PickPlaceCan_Jul18_original/ep_1689660868_9146771/model.xml) from the raw data and the model.xml generated in /tmp,
-then add the geom line to the eldest file in the demo (e.g. add '''<geom name="robot0_link7_collision" type="mesh" rgba="0 0.5 0 1" mesh="robot0_link7"/>''' after line 281 in [ep_1689660868_9146771/model.xml](data_collection/PickPlaceCan_Jul18_original/ep_1689660868_9146771/model.xml))
+
+then add the geom line to the eldest file in the demo, e.g. add```<geom name="robot0_link7_collision" type="mesh" rgba="0 0.5 0 1" mesh="robot0_link7"/>``` after line 281 in [ep_1689660868_9146771/model.xml](data_collection/PickPlaceCan_Jul18_original/ep_1689660868_9146771/model.xml))
 
