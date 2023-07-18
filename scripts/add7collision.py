@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Copying the correct model.xml in the eldest demo to all other demo in the folder"""
 import os
 import shutil
 

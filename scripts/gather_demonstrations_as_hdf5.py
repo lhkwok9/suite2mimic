@@ -1,5 +1,7 @@
 #!/usr/bin/env python
-"""Convert Recorded Data to hdf5 for Robomimic"""
+"""
+Copied from robosuite
+Convert Recorded Data to hdf5"""
 import os, json
 
 from robosuite import load_controller_config
@@ -16,10 +18,10 @@ config = {
 }
 
 # data collection dir to be converted
-folder_name = "PickPlaceCan_Jul18"
+folder_name = "PickPlaceCan_Jul18_original"
 data_directory = os.path.join( os.path.dirname( os.path.dirname( os.path.abspath(__file__) ) ), 'data_collection', folder_name)
 
-goal_folder_name = "PickPlaceCan_Jul18_hdf5"
+goal_folder_name = "PickPlaceCan_Jul18_original_hdf5"
 goal_data_directory = os.path.join( os.path.dirname( os.path.dirname( os.path.abspath(__file__) ) ), 'data_collection', goal_folder_name)
 
 env_info = json.dumps(config)

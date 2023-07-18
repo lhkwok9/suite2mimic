@@ -2,3 +2,5 @@ robomimic/
 robosuite/
 data_collection/*
 !data_collection/PickPlaceCan_Jul18_original
+!data_collection/PickPlaceCan_Jul18_original_hdf5
+data_collection/PickPlaceCan_Jul18_original_hdf5/*

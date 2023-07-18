@@ -60,8 +60,43 @@ cd ~/suite2mimic/robomimic/tests
 bash test.sh
 ```
 
-# robosuite datasets 
-(Demo with data_collection/PickPlaceCan_Jul18_original)
+# robosuite datasets
 ---
+[Demo data](data_collection/PickPlaceCan_Jul18_original)
+1. get robosuite hdf5 format (edit folder_names and robosuite env config in the program)
+```
+cd ~/suite2mimic/scripts
+python gather_demonstrations_as_hdf5.py
+```
 
+2. convert robsuite data to robomimic format ([robomimic instruction](https://robomimic.github.io/docs/datasets/robosuite.html#extracting-observations-from-mujoco-states))
+```
+cd ~/suite2mimic/robomimic/robomimic/scripts
+python conversion/convert_robosuite.py --dataset ../../../data_collection/PickPlaceCan_Jul18_original_hdf5/demo.hdf5
+```
+
+3. extract observation from mujoco states
+```
+# For low dimensional observations only, with done on task success
+python dataset_states_to_obs.py --dataset ../../../data_collection/PickPlaceCan_Jul18_original_hdf5/demo.hdf5 --output_name low_dim.hdf5 --done_mode 2
+
+# For including image observations
+python dataset_states_to_obs.py --dataset ../../../data_collection/PickPlaceCan_Jul18_original_hdf5/demo.hdf5 --output_name image.hdf5 --done_mode 2 --camera_names agentview robot0_eye_in_hand --camera_height 84 --camera_width 84
+
+```
+
+Possible error 1:
+```
+ValueError: No "geom" with name ... exists.
+```
+Reason to error 1:
+the model.xml from the raw data of robosuite does not match that of robosuite that we are using
+
+Solution to error 1:
+run the following line and Ctrl-C after a few seconds
+```
+python /home/jk/suite2mimic/robosuite/robosuite/scripts/collect_human_demonstrations.py --environment PickPlaceCan
+```
+then [check the difference](https://www.diffchecker.com/text-compare/) and find the missing geom between the [model.xml](data_collection/PickPlaceCan_Jul18_original/ep_1689660868_9146771/model.xml) from the raw data and the model.xml generated in /tmp,
+then add the geom line (e.g. add <geom name="robot0_link7_collision" type="mesh" rgba="0 0.5 0 1" mesh="robot0_link7"/> after line 281)
 
