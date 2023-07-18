@@ -113,9 +113,13 @@ then delete all the hdf5 file generated b4 and start from step 1 again
 
 4. config the training
 copy and edit the [example training config](config/robomimic/can/mh/low_dim/bc_rnn.json) from robomimic paper
+
 change experiment.name (e.g. ```Can_Jul18_MH_100_no_quat```)
+
 change train.data (e.g. ```~/suite2mimic/data_collection/PickPlaceCan_Jul18_original_hdf5/low_dim.hdf5```)
+
 change train.output_dir (e.g. ```../../bc_rnn_trained_models```)
+
 change observation.modalities.obs.low_dim (e.g. remove ```"robot0_eef_quat"```)
 
 5. start the training
@@ -123,11 +127,12 @@ change observation.modalities.obs.low_dim (e.g. remove ```"robot0_eef_quat"```)
 cd ~/suite2mimic/robomimic/robomimic/scripts
 python train.py --config ~/suite2mimic/config/custom/bc_rnn.json
 ```
-logs, models and testing videos are in the output_dir
+    logs, models and testing videos are in the output_dir
 
 6. viewing result
 ```
 tensorboard --logdir ~/suite2mimic/bc_rnn_trained_models/Can_Jul18_MH_100_no_quat/20230719015716/logs --bind_all
 ```
-and open the link generated (close the link before Ctrl-C)
-(testing success rate is included in the model name)
+    and open the link generated (close the link before Ctrl-C)
+
+    (testing success rate is included in the model name)
