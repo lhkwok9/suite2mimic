@@ -1,8 +1,18 @@
-robomimic
-!config/robomimic
+# library
+robomimic/
 robosuite/
+
+# raw data and hdf5 data
 data_collection/*
+
+# Previous success data
+!data_collection/Lift_Jul3_robomimic_hdf5/
+!data_collection/PickPlaceCan_Jul13_filtered
+
+# New data
 !data_collection/PickPlaceCan_Jul18_original
 !data_collection/PickPlaceCan_Jul18_original_hdf5
 data_collection/PickPlaceCan_Jul18_original_hdf5/*
-bc_rnn_trained_models
+
+# too large didn't include
+bc_rnn_trained_models/Can_Jul16_MH_image_no_quat_filtered/20230716231433/models
