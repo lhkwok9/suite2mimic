@@ -17,6 +17,8 @@ lift_20_3 = pd.read_csv('/home/jk/robomimic/csv/lift_20_3.csv')
 can_100_1 = pd.read_csv('/home/jk/robomimic/csv/can_100_1.csv')
 can_100_2 = pd.read_csv('/home/jk/robomimic/csv/can_100_2.csv')
 
+can_filtered_100_1 = pd.read_csv('/home/jk/robomimic/csv/can_filtered_100_1.csv')
+
 # ploting bar graph
 
 # lift_100_max = max(lift_100_1['Value'].max('index'), lift_100_2['Value'].max('index'), lift_100_3['Value'].max('index'))
@@ -51,8 +53,8 @@ can_100_2 = pd.read_csv('/home/jk/robomimic/csv/can_100_2.csv')
 
 # ploting can seed graph
 
-# can_100_1.drop(columns=['Wall time'], inplace=True)
-# can_100_1.columns = ['Step', '1']
+can_100_1.drop(columns=['Wall time'], inplace=True)
+can_100_1.columns = ['Step', '1']
 
 # can_100_2.drop(columns=['Wall time'], inplace=True)
 # can_100_2.columns = ['Step', '2']
@@ -63,7 +65,7 @@ can_100_2 = pd.read_csv('/home/jk/robomimic/csv/can_100_2.csv')
 # can_100_1 = can_100_1.merge(can_100_2, on='Step')
 # can_100_1 = can_100_1.merge(can_100_3, on='Step')
 
-# print(pd.melt(can_100_1, ['Step']))
+print(pd.melt(can_100_1, ['Step']))
 # sns.set_theme()
 # sns.lineplot(x='Step', y='Testing Success Rate', data=pd.melt(can_100_1, ['Step'], var_name='Seed', value_name='Testing Success Rate'))
 # plt.show()
