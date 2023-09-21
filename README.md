@@ -61,7 +61,7 @@ bash test.sh
 ```
 
 # Robomimic dataset
-The following steps are for hdf5 file with robomimic format (e.g. demo.hdf5)
+The following steps are demonstration for hdf5 file with robomimic format (data_collection/NutAssemblySquare_Aug8_hdf5/demo.hdf5)
 1. extract observation from mujoco states:
 ```
 # For low dimensional observations only, with done on task success
@@ -79,11 +79,11 @@ All useful config are in config/custom folders
 
 check the algo_name (e.g. ```bc```, ```bcq```)
 
-check experiment.name (e.g. ```PickPlaceSquare_Sep15_image```)
+check experiment.name (e.g. ```NutAssemblySquare_Aug8_image```)
 
 check train.data (e.g. ```~/suite2mimic/data_collection/NutAssemblySquare_Aug8_hdf5/image.hdf5```)
 
-check train.output_dir (e.g. ```../../bc_rnn_trained_models```)
+check train.output_dir (e.g. ```~/suite2mimic/bc_rnn_trained_models```)
 
 check observation.modalities.obs.low_dim (e.g. remove ```"robot0_eef_quat"```)
 
