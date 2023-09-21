@@ -27,6 +27,12 @@ For example, for CUDA Version 11.4:
 conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 cudatoolkit=11.3 -c pytorch
 ```
 
+### Install suite2mimic
+```
+cd ~
+git clone https://github.com/lhkwok9/suite2mimic.git
+```
+
 ### Install robomimic from source
 ```
 cd ~/suite2mimic
