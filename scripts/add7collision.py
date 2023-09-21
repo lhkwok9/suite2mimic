@@ -3,7 +3,7 @@
 import os
 import shutil
 
-data_folder = "../data_collection/PickPlaceCan_Jul18_original/"
+data_folder = "/home/jk/suite2mimic/data_collection/Lift_Sep14" + "/"
 
 for i, ep in enumerate(sorted(os.listdir(data_folder))):
     if i == 0:

@@ -12,16 +12,16 @@ controller_setting_fpath = os.path.join( os.path.dirname( os.path.dirname( os.pa
 controller_config = load_controller_config(custom_fpath=controller_setting_fpath)
 
 config = {
-    "env_name": "Lift", #NutAssemblySingle PickPlaceCan
+    "env_name": "Lift", #NutAssemblySingle PickPlaceCan Lift
     "robots": "Panda",
     "controller_configs": controller_config,
 }
 
 # data collection dir to be converted
-folder_name = "Lift_Jul3_50"
+folder_name = "Lift_Sep14"
 data_directory = os.path.join( os.path.dirname( os.path.dirname( os.path.abspath(__file__) ) ), 'data_collection', folder_name)
 
-goal_folder_name = "Lift_Jul3_50_hdf5"
+goal_folder_name = "Lift_Sep14_hdf5"
 goal_data_directory = os.path.join( os.path.dirname( os.path.dirname( os.path.abspath(__file__) ) ), 'data_collection', goal_folder_name)
 
 env_info = json.dumps(config)

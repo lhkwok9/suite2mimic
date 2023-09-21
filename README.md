@@ -62,13 +62,14 @@ bash test.sh
 
 # robosuite datasets
 The following command are for [Demo data](data_collection/PickPlaceCan_Jul18_original):
-1. get robosuite hdf5 format (edit folder_names and robosuite env config in the program)
+1. get robosuite hdf5 format (edit folder_name, goal_folder_name and robosuite env_name in the program if you are not using demo data)
 ```
 cd ~/suite2mimic/scripts
 python gather_demonstrations_as_hdf5.py
 ```
 
-2. convert robsuite data to robomimic format ([robomimic instruction](https://robomimic.github.io/docs/datasets/robosuite.html#extracting-observations-from-mujoco-states)):
+
+2. convert robsuite data to robomimic format ([robomimic instruction](https://robomimic.github.io/docs/datasets/robosuite.html#extracting-observations-from-mujoco-states), edit dataset arg in the command if you are not using the demo data):
 ```
 cd ~/suite2mimic/robomimic/robomimic/scripts
 python conversion/convert_robosuite.py --dataset ../../../data_collection/PickPlaceCan_Jul18_original_hdf5/demo.hdf5
@@ -77,9 +78,11 @@ python conversion/convert_robosuite.py --dataset ../../../data_collection/PickPl
 3. extract observation from mujoco states:
 ```
 # For low dimensional observations only, with done on task success
+cd ~/suite2mimic/robomimic/robomimic/scripts
 python dataset_states_to_obs.py --dataset ../../../data_collection/PickPlaceCan_Jul18_original_hdf5/demo.hdf5 --output_name low_dim.hdf5 --done_mode 2
 
 # For including image observations
+cd ~/suite2mimic/robomimic/robomimic/scripts
 python dataset_states_to_obs.py --dataset ../../../data_collection/PickPlaceCan_Jul18_original_hdf5/demo.hdf5 --output_name image.hdf5 --done_mode 2 --camera_names agentview robot0_eye_in_hand --camera_height 84 --camera_width 84
 
 ```
@@ -127,12 +130,13 @@ change observation.modalities.obs.low_dim (e.g. remove ```"robot0_eef_quat"```)
 cd ~/suite2mimic/robomimic/robomimic/scripts
 python train.py --config ~/suite2mimic/config/custom/bc_rnn.json
 ```
-    logs, models and testing videos are in the output_dir
+
+logs, models and testing videos are in the output_dir
 
 6. viewing result
 ```
 tensorboard --logdir ~/suite2mimic/bc_rnn_trained_models/Can_Jul18_MH_100_no_quat/20230719015716/logs --bind_all
 ```
-    and open the link generated (close the link before Ctrl-C)
 
-    (testing success rate is included in the model name)
+and open the link generated (close the link before Ctrl-C)
+(testing success rate is included in the model name)
